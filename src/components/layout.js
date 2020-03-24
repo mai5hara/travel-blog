@@ -3,68 +3,88 @@ import { Link } from "gatsby"
 
 import { rhythm, scale } from "../utils/typography"
 
-const Layout = ({ location, title, children }) => {
+const Layout = ({ location, title, children, navList }) => {
   const rootPath = `${__PATH_PREFIX__}/`
   let header
 
   if (location.pathname === rootPath) {
     header = (
-      <h1
-        style={{
-          ...scale(1),
-          marginBottom: rhythm(1.5),
-          marginTop: 0,
-        }}
-      >
-      <nav>
-        
-      </nav>
-        <Link
+      <div style={{display: `flex`, justifyContent: `space-between`}}>
+        <h1
           style={{
-            boxShadow: `none`,
-            textDecoration: `none`,
-            color: `inherit`,
+            ...scale(1),
+            marginBottom: 0,
+            marginTop: 0,
           }}
-          to={`/`}
         >
-          {title}
-        </Link>
-      </h1>
+          <Link
+            style={{
+              boxShadow: `none`,
+              textDecoration: `none`,
+              color: `inherit`,
+            }}
+            to={`/`}
+          >
+            {title}
+          </Link>
+        </h1>
+        <nav
+          style={{
+            listStyle: `none`,
+            display: `flex`,
+            alignItems: `center`,
+          }}
+        >
+          <li style={{marginRight: rhythm(0.8), marginBottom: 0}}>{navList[0]}</li>
+          <li style={{marginRight: rhythm(0.8), marginBottom: 0}}>{navList[1]}</li>
+          <li style={{marginRight: rhythm(0.6), marginBottom: 0}}>{navList[2]}</li>
+        </nav>
+      </div>
     )
   } else {
     header = (
-      <h3
-        style={{
-          fontFamily: `Montserrat, sans-serif`,
-          marginTop: 0,
-        }}
-      >
-        <Link
+      <div>
+        <h1
           style={{
-            boxShadow: `none`,
-            textDecoration: `none`,
-            color: `inherit`,
+            fontFamily: `Montserrat, sans-serif`,
+            ...scale(1),
+            marginBottom: 0,
+            marginTop: 0,
           }}
-          to={`/`}
         >
-          {title}
-        </Link>
-      </h3>
+          <Link
+            style={{
+              boxShadow: `none`,
+              textDecoration: `none`,
+              color: `inherit`,
+            }}
+            to={`/`}
+          >
+            {title}
+          </Link>
+        </h1>
+        <nav>
+          <li>{navList[0]}</li>
+          <li>{navList[1]}</li>
+          <li>{navList[2]}</li>
+        </nav>
+      </div>
     )
   }
   return (
     <div
       style={{
         marginLeft: `auto`,
-        marginRight: `auto`
+        marginRight: `auto`,
       }}
     >
       <header
         style={{
           maxWidth: rhythm(60),
-          padding: `${rhythm(1)} ${rhythm(3 / 4)}`,
+          padding: `${rhythm(3 / 4)}`,
+          backgroundColor: `orange`
         }}
-      >  
+      >
         {header}
       </header>
       <main
@@ -77,10 +97,16 @@ const Layout = ({ location, title, children }) => {
       >
         {children}
       </main>
-      <footer>
-        © {new Date().getFullYear()}, Built with
-        {` `}
-        <a href="https://www.gatsbyjs.org">Gatsby</a>
+      <footer
+      style={{
+        textAlign:  `center`,
+        backgroundColor: `orange`,
+        height: `3rem`,
+        alignItems: `center`,
+        lineHeight: `3rem`
+      }}
+      >
+        © Mai Gohara
       </footer>
     </div>
   )

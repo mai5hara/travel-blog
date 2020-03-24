@@ -7,6 +7,11 @@ if (process.env.NODE_ENV !== 'production') {
 module.exports = {
   siteMetadata: {
     title: `Travel Blog`,
+    nav: {
+      list1: `About`,
+      list2: `Blog`,
+      list3: `Gallery`
+    },
     author: {
       name: `Mai Gohara`,
       summary: `who lives and works in San Francisco building useful things.`,

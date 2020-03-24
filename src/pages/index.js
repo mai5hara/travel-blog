@@ -3,7 +3,7 @@ import { Link, graphql } from "gatsby"
 import Img from "gatsby-image"
 import styled from "styled-components"
 
-import Bio from "../components/bio"
+// import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { rhythm } from "../utils/typography"
@@ -25,20 +25,30 @@ class BlogIndex extends React.Component {
   render() {
     const { data } = this.props
     const siteTitle = data.site.siteMetadata.title
+    const nav = this.props.data.site.siteMetadata.nav
+    const navList = [nav.list1,nav.list2,nav.list3]
     const posts = data.allContentfulPost.edges
     console.log(posts)
   
     return (
-      <Layout location={this.props.location} title={siteTitle}>
+      <Layout location={this.props.location} title={siteTitle} navList={navList}>
         <SEO 
           title="Travel blog"
           keywords={[`blog`, `gatsby`, `javascript`, `react`]}
         />
-        <Bio />
+        <h2
+          style={{
+            marginTop: 0,
+            textAlign: `center`
+          }}
+        >
+          Where I went...
+        </h2>
+
         {posts.map(({ node }) => {
           const title = node.title || node.slug
           return (
-            <Post key={node.slug}>
+            <Post key={node.slug} style={{display: `block`}}>
               <PostImage>
                 <Img fluid={node.image.fluid} />
               </PostImage>
@@ -74,6 +84,11 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
+        nav {
+          list1
+          list2
+          list3
+        }
         author {
           name
           summary
